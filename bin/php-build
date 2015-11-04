@@ -77,6 +77,9 @@ CONFIGURE_OPTIONS=$(cat "$PHP_BUILD_ROOT/share/php-build/default_configure_optio
 # Patches to be applied at the source
 PATCH_FILES=""
 
+# Whether do "make clean" after installation or not
+DO_MAKE_CLEAN="1"
+
 [ -z "$PHPBUILD_INSTALL_EXTENSION" ] && PHPBUILD_INSTALL_EXTENSION=""
 
 if [ -n "$PHP_BUILD_CONFIGURE_OPTS" ]; then
@@ -353,7 +356,9 @@ function build_package() {
     {
         make
         make install
-        make clean
+        if [ "$DO_MAKE_CLEAN" == "1" ]; then
+            make clean
+        fi
     } > /dev/null
     cd "$cwd"
 
@@ -507,6 +512,20 @@ function patch_file() {
     else
         PATCH_FILES="$patch"
     fi
+}
+
+# ### do_make_clean
+#
+# Do "make clean" on PHP build directory after PHP installation
+function do_make_clean() {
+    DO_MAKE_CLEAN="1"
+}
+
+# ### do_not_make_clean
+#
+# Never do "make clean" on PHP build directory after PHP installation
+function do_not_make_clean() {
+    DO_MAKE_CLEAN="0"
 }
 
 # ### with_openssl
