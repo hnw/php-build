@@ -3,6 +3,8 @@ sudo: false
 addons:
   apt:
     packages:
+      - autoconf
+      - automake
       - libmcrypt-dev
       - libtidy-dev
       - php5-cli
