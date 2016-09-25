@@ -24,10 +24,7 @@ addons:
       - re2c
 
 env:
-  matrix:
-    - DEFINITION=5.2.17
-    - DEFINITION=5.3.3
-    - DEFINITION=7.0.11
+  global:
     - DEFINITION=7.1.0RC2
 
 before_install:
@@ -41,7 +38,7 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" && "$DEFINITION" =~ ^"7.1.".*$ ]]; then brew install openssl && export PHP_BUILD_CONFIGURE_OPTS="--with-openssl=$(brew --prefix openssl)" ; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" && "$DEFINITION" == "5.2.17" ]]; then brew install mysql ; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" && "$DEFINITION" == "5.3.3" ]]; then brew install libevent ; fi
-  - echo $PHP_BUILD_CONFIGURE_OPTS
+  - echo $PHP_BUILD_EXTRA_MAKE_ARGUMENTS
   - uname -a
   - w
   - ps auxwwg
