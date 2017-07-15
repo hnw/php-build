@@ -2,16 +2,13 @@
 
 @test "Installs xdebug.so" {
     local ext_dir=$("$TEST_PREFIX/bin/php" -r "echo ini_get('extension_dir');")
-    local install_xdebug=$(echo "$DEFINITION_CONFIG" | grep '^install_xdebug')
 
-    if [ -z $install_xdebug ]; then return ; fi
+    [ -z $(echo "$DEFINITION_CONFIG" | grep '^install_xdebug') ] || skip "Xdebug isn't installed"
     [ -f "$ext_dir/xdebug.so" ]
 }
 
-@test "Enables XDebug" {
-    local install_xdebug=$(echo "$DEFINITION_CONFIG" | grep '^install_xdebug')
-
-    if [ -z $install_xdebug ]; then return ; fi
+@test "Enables Xdebug" {
+    [ -z $(echo "$DEFINITION_CONFIG" | grep '^install_xdebug') ] || skip "Xdebug isn't installed"
     "$TEST_PREFIX/bin/php" -i | grep "xdebug"
 }
 
