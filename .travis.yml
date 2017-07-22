@@ -43,7 +43,6 @@ before_install:
         if [[ "$DEFINITION" == "5.2.17" ]]; then
             brew install mysql
         fi
-        export PATH=/usr/local/opt/icu4c/bin:$PATH
     fi
 
 install:
