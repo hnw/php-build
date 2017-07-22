@@ -9,6 +9,7 @@
     echo "$output" | grep -q '^exif$'
     echo "$output" | grep -q '^ftp$'
     echo "$output" | grep -q '^gd$'
+    echo "$output" | grep -q '^intl$'
     echo "$output" | grep -q '^libxml$'
     # mcrypt is removed from the core in PHP 7.2.0
     [[ $PHP_MINOR_VERSION < 7.2 ]] && echo "$output" | grep -q '^mcrypt$'
