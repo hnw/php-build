@@ -8,7 +8,7 @@
 --with-zlib
 --with-zlib-dir=/usr
 --with-bz2
---with-intl
+--enable-intl
 --with-kerberos
 --with-openssl
 --with-mcrypt=/usr
