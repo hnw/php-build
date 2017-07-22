@@ -533,7 +533,9 @@ function configure_package() {
 
     cd "$source_path"
 
-    if [ ! -f ./configure ] || [ "$PHP_BUILD_FORCE_BUILDCONF" == "on" ] ; then
+    if [ "$PHP_BUILD_FORCE_BUILDCONF" == "on" ] ; then
+        ./buildconf --force
+    elif [ ! -f ./configure ] ; then
         ./buildconf
     fi
 
