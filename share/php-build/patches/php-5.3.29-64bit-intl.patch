@@ -26,3 +26,24 @@ diff -c -r php-5.3.29-orig/aclocal.m4 php-5.3.29/aclocal.m4
       php_cxx_done=yes
     fi
   ])
+diff -c -r php-5.3.29-orig/configure php-5.3.29/configure
+*** php-5.3.29-orig/configure	2014-08-14 04:27:27.000000000 +0900
+--- php-5.3.29/configure	2017-07-22 22:25:03.000000000 +0900
+***************
+*** 52880,52885 ****
+--- 52880,52895 ----
+  CXXCPP="$ac_cv_prog_CXXCPP"
+  echo "$ac_t""$CXXCPP" 1>&6
+  
++     
++   
++   case stdc++ in
++   c|c_r|pthread*) ;;
++   *) 
++       LIBS="-lstdc++ $LIBS" 
++    ;;
++   esac
++ 
++ 
+      php_cxx_done=yes
+    fi

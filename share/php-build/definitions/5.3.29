@@ -1,6 +1,5 @@
 configure_option "--with-mysql" "mysqlnd"
 
-force_buildconf
 patch_file "php-5.3.29-64bit-intl.patch"
 
 install_package "https://secure.php.net/distributions/php-5.3.29.tar.bz2"

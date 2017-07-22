@@ -91,9 +91,6 @@ PATCH_FILES=""
 # Enable Zend Thread Safety by setting this value to "yes"
 [ -z "$PHP_BUILD_ZTS_ENABLE" ] && PHP_BUILD_ZTS_ENABLE=off
 
-# Enable Zend Thread Safety by setting this value to "yes"
-[ -z "$PHP_BUILD_FORCE_BUILDCONF" ] && PHP_BUILD_FORCE_BUILDCONF=off
-
 PHP_BUILD_VERSION="0.11.0dev"
 
 # Error Code to return if a defintion was not found.
@@ -341,11 +338,11 @@ function build_package() {
         mkdir -p "$PREFIX"
     fi
 
-    apply_patches "$source_path" 2>&4
-
     configure_package "$source_path"
 
     trigger_before_install "$source_path" 2>&4
+
+    apply_patches "$source_path" 2>&4
 
     log "Compiling" "$source_path"
 
@@ -432,10 +429,6 @@ function install_package() {
         build_package
         cd - > /dev/null
     } >&4 2>&1
-}
-
-function force_buildconf() {
-    PHP_BUILD_FORCE_BUILDCONF=on
 }
 
 # ### configure_option
@@ -533,9 +526,7 @@ function configure_package() {
 
     cd "$source_path"
 
-    if [ "$PHP_BUILD_FORCE_BUILDCONF" == "on" ] ; then
-        ./buildconf --force
-    elif [ ! -f ./configure ] ; then
+    if [ ! -f ./configure ] ; then
         ./buildconf
     fi
 
