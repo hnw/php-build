@@ -43,6 +43,8 @@ before_install:
         if [[ "$DEFINITION" == "5.2.17" ]]; then
             brew install mysql
         fi
+        # icu4c 59+ requires C++11
+        export CXX="clang++ -std=c++11 -stdlib=libc++"
     fi
 
 install:
