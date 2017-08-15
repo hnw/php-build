@@ -1,5 +1,13 @@
 language: c
 
+sudo: false
+osx_image: xcode8
+os:
+  # Ubuntu Trusty 14.04 (container-based)
+  - linux
+  # Mac OS X 10.11
+  - osx
+
 addons:
   apt:
     packages:
@@ -19,15 +27,9 @@ env:
   - DEFINITION=7.1.8
   - DEFINITION=7.2.0beta2
 
-# See here for osx_image: https://docs.travis-ci.com/user/languages/objective-c
+# See here for osx_image: https://docs.travis-ci.com/user/reference/osx/#OS-X-Version
 matrix:
   include:
-    # Ubuntu Trusty 14.04 (container-based) + all PHP versions
-    - os: linux
-      sudo: false
-    # Mac OS X 10.11 + all PHP versions
-    - os: osx
-      osx_image: xcode8
     # Linux + clang + PHP 5.6
     - os: linux
       compiler: clang
