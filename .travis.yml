@@ -1,8 +1,8 @@
+# Ubuntu Trusty 14.04 (container-based)
 sudo: false
-language: c
+os: linux
 
-os:
-  - linux
+language: c
 
 addons:
   apt:
@@ -14,18 +14,16 @@ addons:
       - re2c
 
 env:
-  global:
-    - PHP_BUILD_EXTRA_MAKE_ARGUMENTS="-j2"
-  matrix:
-    - DEFINITION=5.2.17
-    - DEFINITION=5.3.29
-    - DEFINITION=5.4.45
-    - DEFINITION=5.5.38
-    - DEFINITION=5.6.31
-    - DEFINITION=7.0.22
-    - DEFINITION=7.1.8
-    - DEFINITION=7.2.0beta2
+  - DEFINITION=5.2.17
+  - DEFINITION=5.3.29
+  - DEFINITION=5.4.45
+  - DEFINITION=5.5.38
+  - DEFINITION=5.6.31
+  - DEFINITION=7.0.22
+  - DEFINITION=7.1.8
+  - DEFINITION=7.2.0beta2
 
+# See here for osx_image: https://docs.travis-ci.com/user/languages/objective-c
 matrix:
   include:
     # Mac OS X 10.11 + all PHP versions
