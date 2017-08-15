@@ -30,16 +30,6 @@ env:
 # See here for osx_image: https://docs.travis-ci.com/user/reference/osx/#OS-X-Version
 matrix:
   include:
-    # Linux + clang + PHP 5.6
-    - os: linux
-      compiler: clang
-      env:
-        - DEFINITION=5.6.31
-    # Linux + clang + PHP 7.1
-    - os: linux
-      compiler: clang
-      env:
-        - DEFINITION=7.1.8
     # macOS 10.12 + PHP 5.6
     - os: osx
       osx_image: xcode8.3
@@ -52,6 +42,7 @@ matrix:
         - DEFINITION=7.1.8
 
 before_install:
+  - export PHP_BUILD_EXTRA_MAKE_ARGUMENTS="-j2"
   - |
     if [[ "$TRAVIS_OS_NAME" == "linux" &&
           "$DEFINITION" =~ ^("5.2.".*|"5.3."[0-6])$ ]]; then
