@@ -1,10 +1,8 @@
 sudo: false
-osx_image: xcode8 # Mac OS X 10.11
 language: c
 
 os:
   - linux
-  - osx
 
 addons:
   apt:
@@ -30,17 +28,28 @@ env:
 
 matrix:
   include:
-    # Linux + clang
+    # Mac OS X 10.11 + all PHP versions
+    - os:osx
+      osx_image: xcode8
+    # Linux + clang + PHP 5.6
     - os: linux
       compiler: clang
       env:
         - DEFINITION=5.6.31
+    # Linux + clang + PHP 7.1
+    - os: linux
+      compiler: clang
+      env:
         - DEFINITION=7.1.8
-    # macOS 10.12
+    # macOS 10.12 + PHP 5.6
     - os: osx
       osx_image: xcode8.3
       env:
         - DEFINITION=5.6.31
+    # macOS 10.12 + PHP 7.1
+    - os: osx
+      osx_image: xcode8.3
+      env:
         - DEFINITION=7.1.8
 
 before_install:
