@@ -1,9 +1,19 @@
 language: c
 
+env:
+  - DEFINITION=5.2.17
+  - DEFINITION=5.3.29
+  - DEFINITION=5.4.45
+  - DEFINITION=5.5.38
+  - DEFINITION=5.6.31
+  - DEFINITION=7.0.22
+  - DEFINITION=7.1.8
+  - DEFINITION=7.2.0beta2
+
 sudo: true
 osx_image: xcode8
 os:
-  # Ubuntu Trusty 14.04 (container-based)
+  # Ubuntu Trusty 14.04 (GCE)
   - linux
   # Mac OS X 10.11
   - osx
@@ -16,16 +26,6 @@ addons:
       - libicu-dev
       - php5-cli
       - re2c
-
-env:
-  - DEFINITION=5.2.17
-  - DEFINITION=5.3.29
-  - DEFINITION=5.4.45
-  - DEFINITION=5.5.38
-  - DEFINITION=5.6.31
-  - DEFINITION=7.0.22
-  - DEFINITION=7.1.8
-  - DEFINITION=7.2.0beta2
 
 # See here for osx_image: https://docs.travis-ci.com/user/reference/osx/#OS-X-Version
 matrix:
