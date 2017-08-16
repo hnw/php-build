@@ -18,15 +18,6 @@ os:
   # Mac OS X 10.11
   - osx
 
-addons:
-  apt:
-    packages:
-      - libmcrypt-dev
-      - libtidy-dev
-      - libicu-dev
-      - php5-cli
-      - re2c
-
 # See here for osx_image: https://docs.travis-ci.com/user/reference/osx/#OS-X-Version
 matrix:
   include:
@@ -41,7 +32,22 @@ matrix:
       env:
         - DEFINITION=7.1.8
 
+addons:
+  apt:
+    packages:
+      - libmcrypt-dev
+      - libtidy-dev
+      - libicu-dev
+      - php5-cli
+      - re2c
+
+cache:
+    apt: true
+    ccache: true
+
 before_install:
+  - ccache --version
+  - ccache --zero-stats
   - export PHP_BUILD_EXTRA_MAKE_ARGUMENTS="-j2"
   - |
     if [[ "$TRAVIS_OS_NAME" == "linux" &&
@@ -71,3 +77,6 @@ script:
 
 after_failure:
   - cat $(ls -r /tmp/php-build*.log | head -n 1)
+
+after_success:
+    - ccache --show-stats
