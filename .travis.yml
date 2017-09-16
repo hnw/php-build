@@ -35,6 +35,11 @@ before_install:
     fi
   - |
     if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+        brew info pkg-config
+        pkg-config --debug --modversion libcurl
+    fi
+  - |
+    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         if [[ "$DEFINITION" =~ ^("5."[23]|"5.4."([0-9]|1[0-4])$) ]]; then
             export LIBS="-lssl -lcrypto"
         fi
